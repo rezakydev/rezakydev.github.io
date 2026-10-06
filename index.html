@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RezakyDev — Roblox Programmer</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(#f5f7fb, #080a10);
+  --surface: light-dark(#ffffff, #10131b);
+  --surface-2: light-dark(#eef1f7, #171b25);
+  --text: light-dark(#10131a, #f4f7ff);
+  --muted: light-dark(#626b7c, #9aa4b8);
+  --border: light-dark(#dfe4ee, #252b38);
+  --accent: #6d5dfc;
+  --accent-2: #8b7fff;
+  --shadow: light-dark(0 20px 50px rgba(24,31,50,.10), 0 20px 50px rgba(0,0,0,.35));
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+#app { min-height: 100vh; background: var(--bg); }
+a { color: inherit; text-decoration: none; }
+.container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border); }
+.nav-inner { height: 70px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-weight: 800; letter-spacing: -.04em; font-size: 19px; }
+.logo span { color: var(--accent-2); }
+.nav-links { display: flex; gap: 24px; color: var(--muted); font-size: 14px; }
+.nav-links a:hover { color: var(--text); }
+.hero { padding: 105px 0 90px; display: grid; grid-template-columns: 1.25fr .75fr; gap: 60px; align-items: center; }
+.eyebrow { display: inline-flex; padding: 7px 11px; border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border)); border-radius: 999px; color: var(--accent-2); background: color-mix(in srgb, var(--accent) 9%, transparent); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+h1 { font-size: clamp(48px, 8vw, 86px); line-height: .92; letter-spacing: -.065em; margin: 20px 0; max-width: 760px; }
+h1 span { color: var(--accent-2); }
+.hero p { max-width: 650px; color: var(--muted); font-size: 18px; line-height: 1.7; }
+.actions { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+.btn { border: 1px solid var(--border); padding: 13px 18px; border-radius: 11px; font-weight: 700; font-size: 14px; cursor: pointer; background: var(--surface); color: var(--text); transition: .2s ease; }
+.btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: white; }
+.code-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 22px; box-shadow: var(--shadow); font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; line-height: 1.8; }
+.dot-row { display: flex; gap: 7px; margin-bottom: 18px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
+.code-purple { color: #9a8fff; } .code-green { color: #65d6a0; } .code-muted { color: var(--muted); }
+section { padding: 85px 0; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 34px; }
+.kicker { color: var(--accent-2); text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: .12em; }
+h2 { font-size: clamp(32px, 5vw, 48px); line-height: 1; letter-spacing: -.05em; margin: 8px 0 0; }
+.section-head p { color: var(--muted); max-width: 450px; line-height: 1.6; margin: 0; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 25px; transition: .2s ease; }
+.card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
+.icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 11px; background: color-mix(in srgb, var(--accent) 12%, var(--surface-2)); color: var(--accent-2); font-weight: 900; margin-bottom: 20px; }
+.card h3 { margin: 0 0 9px; font-size: 19px; }
+.card p { color: var(--muted); line-height: 1.65; font-size: 14px; margin: 0; }
+.project { min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; }
+.project-tag { font-size: 11px; color: var(--accent-2); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+.project h3 { font-size: 25px; letter-spacing: -.03em; margin: 13px 0 8px; }
+.project-footer { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 25px; }
+.pill { padding: 6px 9px; border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: 11px; border: 1px solid var(--border); }
+.price-card { display: flex; flex-direction: column; }
+.price { font-size: 38px; font-weight: 800; letter-spacing: -.05em; margin: 12px 0 5px; }
+.price small { font-size: 12px; color: var(--muted); font-weight: 500; }
+ul { padding: 0; margin: 22px 0; list-style: none; display: grid; gap: 10px; color: var(--muted); font-size: 13px; }
+li::before { content: "✓"; color: #65d6a0; margin-right: 9px; font-weight: 800; }
+.contact { background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, var(--surface)), var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border)); border-radius: 22px; padding: 45px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.contact p { color: var(--muted); max-width: 580px; line-height: 1.6; }
+footer { padding: 35px 0 50px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }
+@media (max-width: 800px) { .hero { grid-template-columns: 1fr; padding-top: 70px; } .code-card { display: none; } .grid { grid-template-columns: 1fr; } .section-head { display: block; } .section-head p { margin-top: 15px; } .contact { display: block; padding: 30px; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+<div id="app">
+<nav><div class="container nav-inner"><a class="logo" href="#top">Rezaky<span>Dev</span></a><div class="nav-links"><a href="#servicos">Serviços</a><a href="#projetos">Projetos</a><a href="#precos">Preços</a><a href="#contato">Contato</a></div></div></nav>
+<main id="top">
+<section class="container hero">
+<div>
+<div class="eyebrow">Roblox Programmer · Luau</div>
+<h1>Eu transformo ideias em <span>sistemas jogáveis.</span></h1>
+<p>Programador focado em Roblox, gameplay e sistemas personalizados. Desenvolvimento de combate, IA, movimento, bosses, ferramentas e correção de bugs para experiências Roblox.</p>
+<div class="actions"><a class="btn primary" href="#contato">Solicitar orçamento</a><a class="btn" href="#projetos">Ver portfólio</a></div>
+</div>
+<div class="code-card"><div class="dot-row"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><div><span class="code-purple">local</span> RezakyDev = {</div><div>&nbsp;&nbsp;role = <span class="code-green">"Roblox Programmer"</span>,</div><div>&nbsp;&nbsp;language = <span class="code-green">"Luau"</span>,</div><div>&nbsp;&nbsp;focus = {</div><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"Combat"</span>,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"AI"</span>,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"Gameplay"</span>,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"Optimization"</span></div><div>&nbsp;&nbsp;}</div><div>}</div><br><div><span class="code-muted">-- ready to build</span></div></div>
+</section>
+<section id="servicos"><div class="container"><div class="section-head"><div><div class="kicker">O que eu faço</div><h2>Serviços</h2></div><p>Serviços pensados para projetos que precisam de sistemas funcionais, organizados e adaptáveis.</p></div><div class="grid">
+<div class="card"><div class="icon">⚔</div><h3>Combat Systems</h3><p>Combos, hitboxes, block, parry, stamina, knockback, cooldowns, finisher e integração com NPCs.</p></div>
+<div class="card"><div class="icon">AI</div><h3>NPC & AI</h3><p>IA com detecção, FOV, perseguição, Pathfinding, patrulha, busca de alvos, ataques e anti-stuck.</p></div>
+<div class="card"><div class="icon">↯</div><h3>Gameplay Systems</h3><p>Sprint, stamina, rounds, bosses, habilidades, shops, upgrades, interação e sistemas personalizados.</p></div>
+<div class="card"><div class="icon">UI</div><h3>UI Integration</h3><p>Integração de interfaces com sistemas de gameplay, HUD, barras, cooldowns e feedback ao jogador.</p></div>
+<div class="card"><div class="icon">⌁</div><h3>Bug Fixing</h3><p>Investigação e correção de scripts existentes, erros de lógica, eventos remotos e problemas de integração.</p></div>
+<div class="card"><div class="icon">⚙</div><h3>Optimization</h3><p>Melhorias de desempenho em scripts, loops, eventos, NPCs e sistemas que estejam consumindo recursos.</p></div>
+</div></div></section>
+<section id="projetos"><div class="container"><div class="section-head"><div><div class="kicker">Projetos demonstráveis</div><h2>Portfólio</h2></div><p>Projetos próprios usados como demonstração das minhas capacidades de programação.</p></div><div class="grid">
+<div class="card project"><div><div class="project-tag">Gameplay</div><h3>Advanced R6 Combat</h3><p>Sistema de combate modular para R6 com combo, block, parry, stamina, hitbox, knockback e finalizações.</p></div><div class="project-footer"><span class="pill">Luau</span><span class="pill">R6</span><span class="pill">Combat</span></div></div>
+<div class="card project"><div><div class="project-tag">Artificial Intelligence</div><h3>Monster AI</h3><p>IA de monstros com FOV, detecção, perseguição, Pathfinding, perda de alvo, busca e ataques.</p></div><div class="project-footer"><span class="pill">Pathfinding</span><span class="pill">NPC</span><span class="pill">AI</span></div></div>
+<div class="card project"><div><div class="project-tag">Movement</div><h3>Sprint & Stamina</h3><p>Sistema de movimentação com sprint, stamina, aceleração, desaceleração e integração com HUD.</p></div><div class="project-footer"><span class="pill">Movement</span><span class="pill">HUD</span><span class="pill">Gameplay</span></div></div>
+</div></div></section>
+<section id="precos"><div class="container"><div class="section-head"><div><div class="kicker">Orçamento</div><h2>Preços iniciais</h2></div><p>Valores de referência. Projetos personalizados são avaliados conforme escopo e complexidade.</p></div><div class="grid">
+<div class="card price-card"><div class="project-tag">Basic</div><div class="price">150–500 <small>R$B</small></div><p>Para tarefas pequenas e correções.</p><ul><li>Bug fixing</li><li>Scripts pequenos</li><li>Ajustes e integração</li></ul><a class="btn" href="#contato">Solicitar</a></div>
+<div class="card price-card"><div class="project-tag">Advanced</div><div class="price">500–1.500 <small>R$B</small></div><p>Para sistemas completos de gameplay.</p><ul><li>Combat</li><li>AI / NPC</li><li>Movement</li><li>UI integration</li></ul><a class="btn primary" href="#contato">Solicitar</a></div>
+<div class="card price-card"><div class="project-tag">Custom</div><div class="price">1.500+ <small>R$B</small></div><p>Para sistemas grandes ou personalizados.</p><ul><li>Escopo personalizado</li><li>Integração com projeto existente</li><li>Entrega por etapas</li></ul><a class="btn" href="#contato">Solicitar</a></div>
+</div></div></section>
+<section id="contato"><div class="container"><div class="contact"><div><div class="kicker">Vamos trabalhar</div><h2>Tem um sistema para criar?</h2><p>Envie a ideia, o que já existe no seu projeto e o que você precisa. O orçamento final depende do escopo.</p></div><button class="btn primary" id="contactBtn">Entrar em contato</button></div></div></section>
+</main>
+<footer><div class="container">© 2026 RezakyDev · Roblox Programmer · Luau</div></footer>
+</div>
+<script>
+document.getElementById('contactBtn').addEventListener('click', () => {
+  window.open('https://discord.com/users/.rezaky', '_blank');
+});
+</script>
+</body>
+</html>
